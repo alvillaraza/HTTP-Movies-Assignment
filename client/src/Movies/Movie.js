@@ -6,8 +6,8 @@ import UpdateMovie from "./UpdateMovie";
 import { BrowserRouter as Route } from "react-router-dom";
 
 function Movie(props) {
-  console.log('Movie', props);
-  
+  console.log("Movie", props);
+
   const [movie, setMovie] = useState(null);
   const match = useRouteMatch();
 
@@ -40,11 +40,11 @@ function Movie(props) {
     axios
       .delete(`http://localhost:5000/api/movies/${movie.id}`)
       .then(res => {
-        props.history.push('/');
         props.getMovieList();
+        props.history.push("/");
       })
       .catch(err => console.log(err));
-  }
+  };
 
   return (
     <div className="save-wrapper">
