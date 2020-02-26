@@ -5,9 +5,9 @@ import MovieCard from "./MovieCard";
 import UpdateMovie from "./UpdateMovie";
 import { BrowserRouter as Route } from "react-router-dom";
 
-function Movie(props, { addToSavedList }) {
-  console.log(props);
-
+function Movie(props) {
+  console.log('Movie', props);
+  
   const [movie, setMovie] = useState(null);
   const match = useRouteMatch();
 
@@ -19,7 +19,7 @@ function Movie(props, { addToSavedList }) {
   };
 
   const saveMovie = () => {
-    addToSavedList(movie);
+    props.addToSavedList(movie);
   };
 
   useEffect(() => {
