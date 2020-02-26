@@ -35,9 +35,13 @@ const UpdateMovie = props => {
     axios
       .put(`http://localhost:5000/api/movies/${id}`, updateMovie)
       .then(res => {
-        console.log("We out here", res.data);
-        // props.setMovieList(res.data);
-        // props.history.push(`/${id}`);
+        // If item in movie list matches the one I'm updating, delete it and use the one I updated instead.
+        const newArray = props.movieList.filter(movie => `${movie.id}` !== id);
+
+        const newerArray = [res.data, ...newArray];
+
+        props.setMovieList(newerArray); // Gives the app a whole new array that has the latest changes
+        props.history.push(`/movies/${id}`); // Routes you to same page
       })
       .catch(err => console.log(err));
   };
